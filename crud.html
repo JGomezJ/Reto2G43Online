@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="js/funcion_peticiones.js"></script>
+        <style>
+            th{
+                text-align: right;
+            }
+            .visible {
+                height: 3em;
+                width: 10em;
+                background: transparent;
+            }
+            .auto{ 
+                cursor: auto; 
+            }
+        </style>
+    </head>
+    <body>
+        <center>
+            <h1 style="color: blue;">Formulario para gestionar Gastos</h1>
+            <hr style="width: 50%;">
+            <div style="width: 52%; text-align: right; ">
+                <!-- <input hidden id="btnConsultarh" type="button" value="Todos" onclick="consultar()"> -->
+                <span id="btnVolver" type="button" title="Regresar" class="visible" onclick="volverInicio()">
+                    <img align="center" alt="VolverInicio" src="https://cdn-icons-png.flaticon.com/512/151/151846.png" width="25" height="25">
+                    Volver a inicio
+                </span>
+                &nbsp;&nbsp;
+            </div>
+            <fieldset style="width: 50%;">
+                <legend style="color: blue;">Registro del gasto</legend>
+                <table border="1" width=100%>
+                    <caption>Operaciones sobre Usuarios</caption>
+                    <tr>
+                        <th>ID:</th>
+                        <td>&nbsp;<input type="number" name="codigo" id="codigo" placeholder="Código gasto"></td>
+                    </tr>
+                    <tr>
+                        <th>NOMBRE:</th>
+                        <td>&nbsp;<input type="text" name="nombre" id="nombre" placeholder="Nombre gasto"></td>
+                    </tr>
+                    <tr>
+                        <th>PRECIO:</th>
+                        <td>&nbsp;<input type="number" step="any" name="precio" id="precio" placeholder="Precio gasto"></td>
+                    </tr>
+                    <tr>
+                        <th>FECHA:</th>
+                        <td>&nbsp;<input type="date" name="fecha" id="fecha" placeholder="fecha proceso"></td>
+                    </tr>
+                    <tr>
+                        <th>USUARIO:</th>
+                        <td>&nbsp;<input type="text" name="usuario" id="usuario" placeholder="Nombre Usuario"></td>
+                    </tr>
+                    <tr>
+                        <th>DESCRIPCION:</th>
+                        <td>&nbsp;<textarea id="descripcion" rows="5" cols="25"></textarea></td>
+                    </tr>
+                    <tr><td colspan="2">&nbsp;</td></tr>
+                    <tr>
+                        <td colspan="2" style="text-align: right;">                            
+                            <span id="eliminar" type="button" title="Eliminar" class="visible" onclick="eliminarGastoUsuario($('#codigo'))")>
+                                <img alt="Eliminar" src="https://cdn-icons.flaticon.com/png/512/3405/premium/3405244.png?token=exp=1636083561~hmac=52cc3a123ecd91e9de01c2ebe5479028" width="35" height="35">
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="guardar" type="button" title="Guardar" class="visible" onclick="guardarGastoUsuario()">
+                                <img alt="Guardar" src="https://cdn-icons-png.flaticon.com/512/3580/3580085.png" width="35" height="35">
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="editar" type="button" title="Editar" class="visible" placeholder="Editar">
+                                <img alt="Editar" src="https://cdn-icons-png.flaticon.com/512/1827/1827933.png" width="35" height="35">
+                            </span>
+                            &nbsp;&nbsp;
+                            <span id="limpiar" type="button" title="Limpiar" class="visible">
+                                <img alt="Limpiar" src="https://cdn-icons.flaticon.com/png/512/4989/premium/4989658.png?token=exp=1636084251~hmac=c6d65ebb8fef9b781004790c637083f4" width="35" height="35">
+                            </span>
+                            &nbsp;&nbsp;
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+        </center>
+    </body>
+</html>
