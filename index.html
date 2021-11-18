@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://kit.fontawesome.com/cfd4dff8b1.js" crossorigin="anonymous"></script>
+
+    <!-- <script src="js/master.js"></script> -->
+    <script src="js/funciones_clientes.js"></script>
+    <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</head>
+<body id="body">
+    <!-- Modal class="modal fade" -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="nuevoRegCliente" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div id="nuevoRegC" class="modal-header">
+                    <h5 class="modal-title" id="nuevoRegCliente">Nuevo Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div id="editarRegC" class="modal-header">
+                    <h5 class="modal-title" id="nuevoRegCliente">Editar Registro</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="newRecord">
+                        <div id="id_modal_div" class="form-floating mb-3">
+                            <input id="id_modal" type="text" class="form-control" placeholder="id" aria-label="Id" aria-describedby="basic-addon1">
+                            <label for="floatingPassword">Id</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input id="nombre_modal" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+                            <label for="floatingPassword">Nombre</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input id="email_modal" type="email" class="form-control" placeholder="Email@example.com" aria-label="Email" aria-describedby="basic-addon1">
+                            <label for="floatingPassword">Email</label>
+                        </div>                        
+                        <div class="form-floating mb-3">
+                            <input id="edad_modal" type="number" class="form-control" placeholder="Edad" aria-label="Edad" aria-describedby="basic-addon1">
+                            <label for="floatingPassword">Edad</label>
+                        </div>                        
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button id="btn_NewRec" type="button" class="btn btn-success" onclick="nuevoCliente()">Guardar</button>
+                    <button id="btn_EditRec" type="button" class="btn btn-info" onclick="editarCliente()">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="menu"></div>
+    <main id="main_content">
+        <h1>Listado de Clientes</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Quas consectetur deserunt facilis repellendus dignissimos accusamus voluptatibus,
+            saepe vero doloremque similique sed, dolorem, qui minus nobis temporibus odit dolores natus quasi!</p>
+        <!-- <a href="#openModal">Lanzar el modal</a> -->
+        <br>
+        <div class="container">
+            <div class="input-group">
+                <input id="consultaID" type="text" class="form-control" placeholder="Consultar por ID Cliente" aria-label="Consultar por ID Cliente" aria-describedby="button-addon2">
+                <button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="consultarCliente($('#consultaID'))"><i class="fas fa-search"></i> Consultar por ID</button>
+                <button class="btn btn-outline-secondary" type="button" id="clear-items" onclick="cargarDatos()">Limpiar</button>
+              </div>
+              <br>
+            <button id="btn_nuevoReg" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="viewContentModalNew()"><i class="far fa-plus-square"></i>  Nuevo Cliente</button>
+        </div>
+        <br>
+        <div class="container">
+            <table id="listClientes" class="table table-bordered table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th class="dataCenter">ID</th>
+                        <th class="dataCenter">Nombre</th>
+                        <th class="dataCenter">Email</th>
+                        <th class="dataCenter">Edad</th>
+                        <th class="dataCenter" colspan="2"></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </main>
+    <div id="footer" class="container"></div>
+</body>
+</html>
