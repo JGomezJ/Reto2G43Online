@@ -18,7 +18,7 @@ function getData(page, urlActual){
             else{
                 upDatatableMsg(data.items);
             }        
-            console.log(countRow)    
+            console.log(countRow)  
         }, 
         error: function(XHR, status, error){
             alert("Error: " + error)
@@ -89,6 +89,9 @@ function insertDataClient(){
             'email' : email,
             'age' : age
         },
+        complete: function (xhr, status) {
+            console.log('Petición realizada, ' + xhr.status);
+        },
         success: function(info){
             console.log('Registro guardado !!!')
         }
@@ -107,6 +110,9 @@ function insertDataMsg(){
             'id': countRowMsg+1,
             'messagetext' :msg
         },
+        complete: function (xhr, status) {
+            console.log('Petición realizada, ' + xhr.status);
+        },
         success: function(info){
             console.log('Registro guardado !!!')
         }
@@ -119,7 +125,7 @@ function updateDataClient(){
         id : $("#id_modal").val(),
         name : $("#nombre_modal").val(),
         email : $("#email_modal").val(),
-        age : $("#edad_modal").val()
+        age : parseInt($("#edad_modal").val())
     };
 
     console.log(MyData);
@@ -131,10 +137,7 @@ function updateDataClient(){
         data:dataToSend,
         contentType:"application/JSON",
         dataType: "JSON",
-        error: function (xhr, status) {
-            console.log('ha sucedido un problema, ' + xhr.status);
-        },
-            complete: function (xhr, status) {
+        complete: function (xhr, status) {
             console.log('Petición realizada, ' + xhr.status);
         },
         success: function(data){
@@ -159,10 +162,7 @@ function updateDataMsg(){
         data:dataToSend,
         contentType:"application/JSON",
         dataType: "JSON",
-        error: function (xhr, status) {
-            console.log('ha sucedido un problema, ' + xhr.status);
-        },
-            complete: function (xhr, status) {
+        complete: function (xhr, status) {
             console.log('Petición realizada, ' + xhr.status);
         },
         success: function(data){
@@ -183,10 +183,7 @@ function deleteData(idElement, page, urlActual){
         type:"DELETE",        
         data: dataToSendDelete,
         contentType:"application/JSON",
-        dataType: "JSON",
-        error: function (xhr, status) {
-            console.log('ha sucedido un problema, ' + xhr.status);
-        },
+        dataType: "JSON",        
         complete: function (xhr, status) {
             console.log('Petición realizada, ' + xhr.status);
         },success : function(info){
@@ -266,23 +263,33 @@ function cargarDatos(){
     getData("Clientes", urlAPI);
 }
 
-function validarEmail(){
+function validarCamposClientes(){
+    if($("#nombre_modal").val()==""){
+        alert('El campo Nombre no puede estar vacio!!!.');
+        return false;
+    }
+
     if($("#email_modal").val().indexOf('@',0) == -1 || $("#email_modal").val().indexOf('.', 0) == -1){
-        alert('El correo electrónico introducido no es correcto.');
+        alert('El campo Email no puede estar vacio ó el introducido no es correcto.');
             return false;
+    }
+
+    if($("#edad_modal").val()=="" || parseInt($("#edad_modal").val())<1){
+        alert('El campo Edad debe ser mayor a 1.');
+        return false;
     }
     return true;
 }
 
 function nuevoCliente(){
-    if(!validarEmail())
+    if(!validarCamposClientes())
         return;
     
     $('#listClientes > tbody').empty();
     insertDataClient();
-    getData("Clientes", urlAPI);
     limpiarControles();
     $('#exampleModal').modal('toggle');
+    getData("Clientes", urlAPI);
 }
 
 function cargarInfoModal(){
@@ -303,15 +310,15 @@ function cargarInfoModal(){
 }
 
 function editarCliente(){
-    if(!validarEmail()){
+    if(!validarCamposClientes()){
         return;
     }
 
     $('#listClientes > tbody').empty();
     updateDataClient();
-    getData("Clientes", urlAPI);
     limpiarControles();
     $('#exampleModal').modal('toggle');
+    getData("Clientes", urlAPI);
 }
 
 function eliminarReg(){     
@@ -322,7 +329,7 @@ function eliminarReg(){
             deleteData(parseInt($(this).find('td:first-child').html()),"Clientes", urlAPI);
             $('#listClientes > tbody').empty();
         }); 
-    }   
+    }
 }
 
 function viewContentModalNew(){
@@ -354,6 +361,9 @@ function cargarDatosMsg(){
 }
 
 function nuevoMsg(){
+    if(!validarCampoMsg()){
+        return;
+    }
     $('#listMensajes > tbody').empty();
     insertDataMsg();
     $('#msg_modal').val('')
@@ -377,6 +387,9 @@ function cargarInfoModalMsg(){
 }
 
 function editarMsg(){
+    if(!validarCampoMsg()){
+        return;
+    }
     $('#listMensajes > tbody').empty();
     updateDataMsg();
     getData("Mensajes", urlAPIMsg);
@@ -392,7 +405,7 @@ function eliminarRegMsg(){
             deleteData(parseInt($(this).find('td:first-child').html()), "Mensajes", urlAPIMsg);
             $('#listMensajes > tbody').empty();
         }); 
-    }   
+    }
 }
 
 function viewContentModalNewMsg(){
@@ -402,4 +415,12 @@ function viewContentModalNewMsg(){
     $('#editarRegMsg').hide();
     $('#btn_EditRecMsg').hide();
     $('#idMsg_modal_div').hide();
+}
+
+function validarCampoMsg(){
+    if($("#msg_modal").val()==""){
+        alert('El campo Mensaje no puede estar vacio!!!.');
+        return false;
+    }
+    return true;
 }

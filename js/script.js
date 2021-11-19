@@ -121,16 +121,16 @@ function agregarFooter(){
             '</div>' +
             '<div class="box_footer">' +
                 '<h2>Compañia</h2>' +
-                '<a href="">Acerca de</a>' +
+                '<a href="https://misiontic2022.usergioarboleda.edu.co/nosotros">Acerca de</a>' +
                 '<a href="">Trabajos</a>' +
-                '<a href="">Procesos</a>' +
-                '<a href="">Servicios</a>' +
+                '<a href="https://misiontic2022.usergioarboleda.edu.co/contacto">Procesos</a>' +
+                '<a href="https://misiontic2022.usergioarboleda.edu.co/noticias">Servicios</a>' +
             '</div>' +
             '<div class="box_footer">' +
                 '<h2>Redes Sociales</h2>' +
-                '<a href="#"><i class="fab fa-facebook-square"></i> Facebook</a>' +
+                '<a href="https://www.facebook.com/wolf.darksky/"><i class="fab fa-facebook-square"></i> Facebook</a>' +
                 '<a href="#"><i class="fab fa-twitter-square"></i> Twitter</a>' +
-                '<a href="#"><i class="fab fa-linkedin"></i> Linkedin</a>' +
+                '<a href="https://www.linkedin.com/in/john-gomez-a654245b/"><i class="fab fa-linkedin"></i> Linkedin</a>' +
                 '<a href="#"><i class="fab fa-instagram-square"></i> Instagram</a>' +
             '</div>' +
         '</div>' +
